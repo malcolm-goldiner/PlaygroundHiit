@@ -49,15 +49,15 @@ class RoutinesViewController : UIViewController {
         self.timer.displayTimeLabel = self.countdownLabel
         var newEx : [Workout] = []
         
-        for var i = 0 ; i < count(self.exercises) - 1; i++ {
+        for var i = 0 ; i < self.exercises.count - 1; i++ {
             newEx.append(self.exercises[i])
-            if(i != count(self.exercises) - 1){
-                var rest = Workout()
+            if(i != self.exercises.count - 1){
+                let rest = Workout()
                 rest.name = "Rest"
                 newEx.append(rest)
             }
             else {
-                var cool = Workout()
+                let cool = Workout()
                 cool.name = "Cool Down"
                 newEx.append(cool)
             }
@@ -122,7 +122,7 @@ class RoutinesViewController : UIViewController {
                 
             }
             
-            if((startingIndex + 1) < (count(self.exercises))){
+            if((startingIndex + 1) < (self.exercises.count)){
                 dispatch_async(dispatch_get_main_queue()) {
                     self.beginWorkoutAtIndex(startingIndex + 1)
                     

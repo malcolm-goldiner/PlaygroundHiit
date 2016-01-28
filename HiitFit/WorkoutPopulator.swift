@@ -28,27 +28,17 @@ class WorkoutPopulator{
         var orderedList = ["Warmups","Upper Body","Lower Body","Core","Cardio/Plyometrics","Cool Downs/Stretches"]
         
         
-        for i in 0...count(orderedList) - 1 {
-            var current : [String] = cats[orderedList[i]]!
-            var n = WorkoutCategory()
+        for i in 0...orderedList.count - 1 {
+            let current : [String] = cats[orderedList[i]]!
+            let n = WorkoutCategory()
             n.categoryName = orderedList[i]
             for name in current {
-                var w = Workout()
+                let w = Workout()
                 w.name = name
                 n.exercises.append(w)
             }
             arr.append(n)
         }
-        
-        
-        
-        for (s,e) in cats{
-            
-        }
-        
-        
-        
-        
         
         
         return arr

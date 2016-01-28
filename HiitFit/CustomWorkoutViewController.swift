@@ -30,7 +30,12 @@ class CustomWorkoutViewController : UIViewController, UITextFieldDelegate {
     
     
     @IBAction func workoutNamed(sender: UITextField) {
-        self.customCat.categoryName = sender.text
+        if let textFieldValue = sender.text {
+                self.customCat.categoryName = textFieldValue
+        } else {
+            self.customCat.categoryName = ""
+        }
+    
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -44,10 +49,10 @@ class CustomWorkoutViewController : UIViewController, UITextFieldDelegate {
         
         var i = 0
         for arr in workout {
-            var unpackedCat : WorkoutCategory = WorkoutCategory()
+            let unpackedCat : WorkoutCategory = WorkoutCategory()
             unpackedCat.categoryName = "custom \(i)"
             for name in arr{
-                var unpackedWorkout = Workout()
+                let unpackedWorkout = Workout()
                 unpackedWorkout.name = name
                 unpackedCat.exercises.append(unpackedWorkout)
             }
@@ -58,7 +63,7 @@ class CustomWorkoutViewController : UIViewController, UITextFieldDelegate {
     }
     
     func getWorkoutCat() -> [WorkoutCategory]! {
-        var cont = WorkoutPopulator()
+        let cont = WorkoutPopulator()
         return cont.setup()
         
     }
@@ -83,17 +88,17 @@ class CustomWorkoutViewController : UIViewController, UITextFieldDelegate {
     func tableView(tableView: UITableView!, editActionsForRowAtIndexPath indexPath: NSIndexPath!) -> [AnyObject]! {
         
         let deleteClosure = { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
-            print(indexPath.row)
+            print(indexPath.row, terminator: "")
             self.customWorkout.removeAtIndex(indexPath.row)
             
-            println("Delete closure called")
+            print("Delete closure called")
             self.myWorkoutTableView.editing = false
             self.myWorkoutTableView.reloadData()
         }
         
         let addClosure = { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             if(self.inSubCats) {
-                print(indexPath.row)
+                print(indexPath.row, terminator: "")
                 var newWorkout = Workout()
                 newWorkout = self.currentTableViewData[indexPath.row] as! Workout
                 
@@ -109,7 +114,7 @@ class CustomWorkoutViewController : UIViewController, UITextFieldDelegate {
             self.myWorkoutTableView.reloadData()
             self.workoutOptionsTableView.editing = false
             
-            println("Delete closure called")
+            print("Delete closure called")
         }
         
         
@@ -131,7 +136,7 @@ class CustomWorkoutViewController : UIViewController, UITextFieldDelegate {
     
     
     @IBAction func savePressed(sender: AnyObject) {
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         if defaults.valueForKey("CustomWorkouts") != nil {
             var current : [[String]] = defaults.valueForKey("CustomWorkouts") as! [[String]]
             var next : [String] = []
@@ -164,7 +169,7 @@ class CustomWorkoutViewController : UIViewController, UITextFieldDelegate {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
+        let cell = UITableViewCell()
         if(tableView == self.workoutOptionsTableView) {
             if(self.inSubCats){
                 cell.textLabel?.text  = (self.currentTableViewData[indexPath.row] as! Workout).name
@@ -205,7 +210,7 @@ class CustomWorkoutViewController : UIViewController, UITextFieldDelegate {
         }
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if(identifier == "showCustom"){
             return NSUserDefaults.standardUserDefaults().valueForKey("CustomWorkouts") != nil
         }
@@ -216,18 +221,18 @@ class CustomWorkoutViewController : UIViewController, UITextFieldDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showSubCategories" && !self.inSubCats{
-            var dest =  segue.destinationViewController as! HiitFitInnerTableView
+            let dest =  segue.destinationViewController as! HiitFitInnerTableView
             if sender?.textLabel??.text != nil {
                 dest.sectionName = (sender?.textLabel??.text)!
-                print (dest.sectionName)
+                print (dest.sectionName, terminator: "")
             }
         } else if segue.identifier == "showCustom"{
-            var destin = (segue.destinationViewController as! UINavigationController).topViewController as! HiitFitOutterTableView
+            let destin = (segue.destinationViewController as! UINavigationController).topViewController as! HiitFitOutterTableView
             // need check here
             
            
             if(NSUserDefaults.standardUserDefaults().valueForKey("CustomWorkouts") != nil) {
-                var data = NSUserDefaults.standardUserDefaults().valueForKey("CustomWorkouts") as! [[String]]
+                let data = NSUserDefaults.standardUserDefaults().valueForKey("CustomWorkouts") as! [[String]]
                 
                 destin.workoutCats = self.unpackStoredWorkouts(data)
                 

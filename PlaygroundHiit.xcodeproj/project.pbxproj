@@ -51,12 +51,12 @@
 		233BD2AC1AAFC0C500E5DB5F /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		2341ADC91AD04FE500728442 /* ProgrammedWorkoutsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgrammedWorkoutsViewController.swift; sourceTree = "<group>"; };
 		23A340011ACE3D230054280F /* SWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWViewController.swift; sourceTree = "<group>"; };
-		23B4958C1A93D10900EB8D7A /* PlaygroundHiit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaygroundHiit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		23B4958C1A93D10900EB8D7A /* PlaygroundHIIT.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaygroundHIIT.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B495901A93D10900EB8D7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23B495911A93D10900EB8D7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23B4959A1A93D10900EB8D7A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		23B4959D1A93D10900EB8D7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		23B495A31A93D10900EB8D7A /* PlaygroundHiitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlaygroundHiitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		23B495A31A93D10900EB8D7A /* PlaygroundHIIT.temp_caseinsensitive_rename.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlaygroundHIIT.temp_caseinsensitive_rename.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B495B31A93D2E000EB8D7A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../Main.storyboard; sourceTree = "<group>"; };
 		23B495B71A93D33500EB8D7A /* HiitFitOutterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiitFitOutterTableView.swift; sourceTree = "<group>"; };
 		23B495B91A93DFF400EB8D7A /* HiitFitInnerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiitFitInnerTableView.swift; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 		23B495831A93D10900EB8D7A = {
 			isa = PBXGroup;
 			children = (
-				23B4958E1A93D10900EB8D7A /* HiitFit */,
+				23B4958E1A93D10900EB8D7A /* PlaygroundHIIT */,
 				23B4958D1A93D10900EB8D7A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,13 +103,13 @@
 		23B4958D1A93D10900EB8D7A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				23B4958C1A93D10900EB8D7A /* PlaygroundHiit.app */,
-				23B495A31A93D10900EB8D7A /* PlaygroundHiitTests.xctest */,
+				23B4958C1A93D10900EB8D7A /* PlaygroundHIIT.temp_caseinsensitive_rename.app */,
+				23B495A31A93D10900EB8D7A /* PlaygroundHIIT.temp_caseinsensitive_rename.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		23B4958E1A93D10900EB8D7A /* HiitFit */ = {
+		23B4958E1A93D10900EB8D7A /* PlaygroundHIIT */ = {
 			isa = PBXGroup;
 			children = (
 				233373211AAD1679001524A9 /* Chart */,
@@ -131,6 +131,7 @@
 				23B4959C1A93D10900EB8D7A /* LaunchScreen.xib */,
 				23B4958F1A93D10900EB8D7A /* Supporting Files */,
 			);
+			name = PlaygroundHIIT;
 			path = HiitFit;
 			sourceTree = "<group>";
 		};
@@ -159,7 +160,7 @@
 			);
 			name = PlaygroundHiit;
 			productName = HiitFit;
-			productReference = 23B4958C1A93D10900EB8D7A /* PlaygroundHiit.app */;
+			productReference = 23B4958C1A93D10900EB8D7A /* PlaygroundHIIT.temp_caseinsensitive_rename.app */;
 			productType = "com.apple.product-type.application";
 		};
 		23B495A21A93D10900EB8D7A /* PlaygroundHiitTests */ = {
@@ -177,7 +178,7 @@
 			);
 			name = PlaygroundHiitTests;
 			productName = HiitFitTests;
-			productReference = 23B495A31A93D10900EB8D7A /* PlaygroundHiitTests.xctest */;
+			productReference = 23B495A31A93D10900EB8D7A /* PlaygroundHIIT.temp_caseinsensitive_rename.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +187,9 @@
 		23B495841A93D10900EB8D7A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Michylle Padillia";
 				TargetAttributes = {
 					23B4958B1A93D10900EB8D7A = {
@@ -199,7 +202,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 23B495871A93D10900EB8D7A /* Build configuration list for PBXProject "PlaygroundHiit" */;
+			buildConfigurationList = 23B495871A93D10900EB8D7A /* Build configuration list for PBXProject "PlaygroundHIIT" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -311,6 +314,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -376,7 +380,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HiitFit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = PlaygroundHiit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mpPlaygroundHIIT;
+				PRODUCT_NAME = PlaygroundHIIT.temp_caseinsensitive_rename;
 			};
 			name = Debug;
 		};
@@ -388,7 +393,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HiitFit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = PlaygroundHiit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mpPlaygroundHIIT;
+				PRODUCT_NAME = PlaygroundHIIT.temp_caseinsensitive_rename;
 			};
 			name = Release;
 		};
@@ -406,7 +412,8 @@
 				);
 				INFOPLIST_FILE = HiitFitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = PlaygroundHiitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "Michylle-Padilla.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = PlaygroundHIIT.temp_caseinsensitive_rename;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HiitFit.app/HiitFit";
 			};
 			name = Debug;
@@ -421,7 +428,8 @@
 				);
 				INFOPLIST_FILE = HiitFitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = PlaygroundHiitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "Michylle-Padilla.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = PlaygroundHIIT.temp_caseinsensitive_rename;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HiitFit.app/HiitFit";
 			};
 			name = Release;
@@ -429,7 +437,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		23B495871A93D10900EB8D7A /* Build configuration list for PBXProject "PlaygroundHiit" */ = {
+		23B495871A93D10900EB8D7A /* Build configuration list for PBXProject "PlaygroundHIIT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				23B495AB1A93D10900EB8D7A /* Debug */,

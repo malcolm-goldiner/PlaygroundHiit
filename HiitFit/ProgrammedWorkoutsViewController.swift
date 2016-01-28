@@ -66,33 +66,33 @@ class ProgrammedWorkoutsViewController : UIViewController {
     }
     
     @IBAction func woundedPressed(sender: UIButton) {
-        var arr = self.poulator.presetWorkouts["Wounded Parent"] as! [String]
-        var cat = WorkoutCategory()
+        let arr = self.poulator.presetWorkouts["Wounded Parent"] as! [String]
+        let cat = WorkoutCategory()
         cat.categoryName = "Wounded Parent"
         self.currentTableViewData = cat
         for string in arr{
-            var w = Workout()
+            let w = Workout()
             w.name = string
             self.currentTableViewData.exercises.append(w)
         }
         self.setImages()
-        var button = UIButton()
+        let button = UIButton()
         button.titleLabel?.text = "Wounded Parent"
     }
     
     @IBAction func greeniePressed(sender: AnyObject) {
-        var arr = self.poulator.presetWorkouts["Greenie Parent"] as! [String]
-        var cat = WorkoutCategory()
+        let arr = self.poulator.presetWorkouts["Greenie Parent"] as! [String]
+        let cat = WorkoutCategory()
         cat.categoryName = "Greenie Parent"
         self.currentTableViewData = cat
         for string in arr{
-            var w = Workout()
+            let w = Workout()
             w.name = string
             self.currentTableViewData.exercises.append(w)
         }
         
         self.setImages()
-        var button = UIButton()
+        let button = UIButton()
         button.titleLabel?.text = "Greenie Parent"
     }
     
@@ -105,7 +105,7 @@ class ProgrammedWorkoutsViewController : UIViewController {
     
         
         if( segue.identifier == "wounded"){
-            var dest = segue.destinationViewController as! HiitFitInnerTableView
+            let dest = segue.destinationViewController as! HiitFitInnerTableView
             dest.workouts = self.currentTableViewData.exercises
         } 
     }

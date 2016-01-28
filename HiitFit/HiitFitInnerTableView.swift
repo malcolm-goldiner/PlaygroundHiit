@@ -11,7 +11,7 @@ import UIKit
 
 
 
-class HiitFitInnerTableView : UITableViewController, UITableViewDataSource, UITableViewDelegate {
+class HiitFitInnerTableView : UITableViewController {
     
     var sectionName: String = ""
     
@@ -19,7 +19,7 @@ class HiitFitInnerTableView : UITableViewController, UITableViewDataSource, UITa
     
     var workouts : [Workout] = []
     
-    internal func setWorkoutCats(var input:Array<Workout>){
+    internal func setWorkoutCats(input:Array<Workout>){
         self.workouts = input;
     }
     
@@ -31,7 +31,7 @@ class HiitFitInnerTableView : UITableViewController, UITableViewDataSource, UITa
     
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var descTextView = UITextView()
+        let descTextView = UITextView()
         descTextView.scrollEnabled = false
         
         
@@ -59,16 +59,11 @@ class HiitFitInnerTableView : UITableViewController, UITableViewDataSource, UITa
             
         }
         
-        var headerView = UIView()
+        let headerView = UIView()
         
         headerView.addSubview(descTextView)
         
         descTextView.textColor = UIColor.grayColor()
-        
-        
-        
-        
-        var realSize = descTextView.textContainer.size
         
         
         
@@ -108,7 +103,7 @@ class HiitFitInnerTableView : UITableViewController, UITableViewDataSource, UITa
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
+        let cell = UITableViewCell()
         cell.textLabel?.text = self.workouts[indexPath.row].name
         return cell
     }
@@ -118,8 +113,8 @@ class HiitFitInnerTableView : UITableViewController, UITableViewDataSource, UITa
             let dest = segue.destinationViewController as! WorkoutViewController
             dest.workoutName = (sender?.textLabel??.text)!
             
-            var cell = sender as! UITableViewCell
-            var index = self.tableView!.indexPathForCell(cell)
+            let cell = sender as! UITableViewCell
+            let index = self.tableView!.indexPathForCell(cell)
             
             dest.startImage = self.workouts[index!.row].startImage
             dest.endImage = self.workouts[index!.row].endImage

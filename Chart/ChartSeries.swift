@@ -24,7 +24,7 @@ class ChartSeries {
     init(_ data: Array<Float>) {
        
         var mutableData : Array<(x: Float, y: Float)> = []
-        for (x, y) in enumerate(data) {
+        for (x, y) in data.enumerate() {
             /*
             let point: (x: Float, y: Float) =
             var mutablePoint = point*/

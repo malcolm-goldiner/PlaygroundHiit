@@ -28,7 +28,7 @@ class Workout {
     
     func addImageDataToUserDefault(startImagedata : NSData, endImageData: NSData, workoutName : String){
         
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         if(defaults.objectForKey("PHiitImages") == nil){
             var imageDict : [String:AnyObject] = NSDictionary() as! [String : AnyObject]  // image should be either NSData or empty
             imageDict.updateValue([startImagedata,endImageData], forKey: workoutName)
@@ -37,7 +37,7 @@ class Workout {
             defaults.setObject(dataExample, forKey: "PHiitImages")
             
         } else {
-            var entry = defaults.objectForKey("PHiitImages") as! NSData
+            let entry = defaults.objectForKey("PHiitImages") as! NSData
             var dictionary  = (NSKeyedUnarchiver.unarchiveObjectWithData(entry)! as! [String: AnyObject])
             
             dictionary.updateValue([startImagedata,endImageData], forKey: workoutName)
@@ -53,10 +53,10 @@ class Workout {
     
     func setImage(){
         
-        println(self.name + " Start")
+        print(self.name + " Start")
         
         
-        var replacedString = self.name.stringByReplacingOccurrencesOfString("/", withString: ":")
+        let replacedString = self.name.stringByReplacingOccurrencesOfString("/", withString: ":")
         
         self.startImage = UIImage(named:replacedString + " Start")!
         self.endImage = UIImage(named: replacedString + " End")! 

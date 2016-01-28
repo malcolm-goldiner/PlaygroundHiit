@@ -37,7 +37,7 @@ class BodyMeasurementsViewController : UIViewController, UIPickerViewDelegate, U
     }
     
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return self.unitOptions[row]
     }
     
@@ -51,7 +51,7 @@ class BodyMeasurementsViewController : UIViewController, UIPickerViewDelegate, U
     @IBAction func unitsButtonPressed(sender: AnyObject) {
         
         if(!self.unitsPickerView.hidden && self.weightTextField!.text != nil
-            && count(self.weightTextField!.text!) > 2 && self.units != self.unitOptions[self.unitsPickerView.selectedRowInComponent(0)]){
+            && (self.weightTextField!.text!).characters.count > 2 && self.units != self.unitOptions[self.unitsPickerView.selectedRowInComponent(0)]){
                 self.units = self.unitOptions[self.unitsPickerView.selectedRowInComponent(0)]
                 
                 var pounds : Float = 0.0
@@ -59,18 +59,18 @@ class BodyMeasurementsViewController : UIViewController, UIPickerViewDelegate, U
                 if(self.units == "lbs" && justChanged){
                     self.weightTextField.placeholder = "lbs"
                     justChanged = false
-                    print(self.weightTextField!.text!.substringWithRange(Range<String.Index>(start:  self.weightTextField!.text!.startIndex, end: advance(self.weightTextField!.text!.endIndex, -self.offset))))
-                    pounds  =   Float(self.weightTextField!.text!.substringWithRange(Range<String.Index>(start:  self.weightTextField!.text!.startIndex, end: advance(self.weightTextField!.text!.endIndex, -self.offset))).toInt()!)
+                    print(self.weightTextField!.text!.substringWithRange(Range<String.Index>(start:  self.weightTextField!.text!.startIndex, end: self.weightTextField!.text!.endIndex.advancedBy(-self.offset))), terminator: "")
+                    pounds  =   Float(Int(self.weightTextField!.text!.substringWithRange(Range<String.Index>(start:  self.weightTextField!.text!.startIndex, end: self.weightTextField!.text!.endIndex.advancedBy(-self.offset))))!)
                     newWeight = pounds * 2.20462
                     
                 } else if(self.units == "kgs" && justChanged){
                     self.weightTextField.placeholder = "kgs"
                     justChanged = false
-                    print(self.weightTextField!.text!.substringWithRange(Range<String.Index>(start:  self.weightTextField!.text!.startIndex, end: advance(self.weightTextField!.text!.endIndex, -self.offset))))
-                    pounds  =   Float(self.weightTextField!.text!.substringWithRange(Range<String.Index>(start:  self.weightTextField!.text!.startIndex, end: advance(self.weightTextField!.text!.endIndex, -self.offset))).toInt()!)
+                    print(self.weightTextField!.text!.substringWithRange(Range<String.Index>(start:  self.weightTextField!.text!.startIndex, end: self.weightTextField!.text!.endIndex.advancedBy(-self.offset))), terminator: "")
+                    pounds  =   Float(Int(self.weightTextField!.text!.substringWithRange(Range<String.Index>(start:  self.weightTextField!.text!.startIndex, end: self.weightTextField!.text!.endIndex.advancedBy(-self.offset))))!)
                     newWeight = pounds * 0.453592
                 } else {
-                    newWeight = Float(self.weightTextField!.text!.toInt()!)
+                    newWeight = Float(Int(self.weightTextField!.text!)!)
                 }
                 
                 self.weightTextField!.text! = "\(newWeight) "
@@ -92,11 +92,11 @@ class BodyMeasurementsViewController : UIViewController, UIPickerViewDelegate, U
         self.weightTextField!.placeholder? = self.unitOptions[self.unitsPickerView.selectedRowInComponent(0)]
         self.title = "Weight Tracker"
         
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         
         if((defaults.objectForKey(self.weightTextField!.text!)) != nil){
-            self.weightTextField!.text! = (defaults.objectForKey("HiitFit") as! String).substringWithRange(Range<String.Index>(start:  self.weightTextField!.text!.startIndex, end: advance(self.weightTextField!.text!.endIndex, -self.offset)))
-            self.units = (defaults.objectForKey("HiitFit") as! String).substringWithRange(Range<String.Index>(start:  advance(self.weightTextField!.text!.endIndex, -self.offset), end: self.weightTextField!.text!.endIndex))
+            self.weightTextField!.text! = (defaults.objectForKey("HiitFit") as! String).substringWithRange(Range<String.Index>(start:  self.weightTextField!.text!.startIndex, end: self.weightTextField!.text!.endIndex.advancedBy(-self.offset)))
+            self.units = (defaults.objectForKey("HiitFit") as! String).substringWithRange(Range<String.Index>(start:  self.weightTextField!.text!.endIndex.advancedBy(-self.offset), end: self.weightTextField!.text!.endIndex))
             self.unitsPickerView.selectedRowInComponent((self.units == "kgs") ? 1 : 0)
             self.date = defaults.objectForKey("HiitFitDate")as! NSDate
             self.datesPicker.setDate(self.date, animated: true)
@@ -110,7 +110,7 @@ class BodyMeasurementsViewController : UIViewController, UIPickerViewDelegate, U
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
-        var weight = Float(self.weightTextField!.text!.substringWithRange(Range<String.Index>(start:  self.weightTextField!.text!.startIndex, end: advance(self.weightTextField!.text!.endIndex, -self.offset))).toInt()!)
+        var weight = Float(Int(self.weightTextField!.text!.substringWithRange(Range<String.Index>(start:  self.weightTextField!.text!.startIndex, end: self.weightTextField!.text!.endIndex.advancedBy(-self.offset))))!)
         if(self.units == "kilograms"){
             weight /= 2.20462
         }
@@ -125,9 +125,9 @@ class BodyMeasurementsViewController : UIViewController, UIPickerViewDelegate, U
         
         self.weightChart.removeSeries()
         if(self.units == "kgs"){
-            var defaults = NSUserDefaults.standardUserDefaults()
+            let defaults = NSUserDefaults.standardUserDefaults()
             
-            var copyOfDefaults = NSMutableArray()
+            let copyOfDefaults = NSMutableArray()
             
             var pastPoints : [[Float]] = []
             
@@ -136,13 +136,13 @@ class BodyMeasurementsViewController : UIViewController, UIPickerViewDelegate, U
             
             if(defaults.objectForKey("PastHiit") != nil){
                 
-                print(defaults.objectForKey("PastHiit") )
+                print(defaults.objectForKey("PastHiit"), terminator: "" )
                 
                 pastPoints = defaults.objectForKey("PastHiit")! as! [[Float]]
                 
                 
                 
-                for var i = 0; i < count(pastPoints); ++i{
+                for var i = 0; i < pastPoints.count; ++i{
                     var thisSet : [Float] = pastPoints[i] as
                         [Float]
                     copyOfDefaults.addObject(thisSet)
@@ -150,17 +150,16 @@ class BodyMeasurementsViewController : UIViewController, UIPickerViewDelegate, U
                     thisSet[1] *= 0.453592
                     
                     
+                    let addition :(x: Float, y: Float) = (x: Float(thisSet[0]), y: Float(thisSet[1]))
                     
-                    let point : Array<(x: Float, y: Float)> = [(x: Float(thisSet[0]), y: Float(thisSet[1]))]
-                    
-                    points.append(x:Float(thisSet[0]), y:Float(thisSet[1]))
+                    points.append(addition)
                     
                     
                     
                 }
             }
             
-            var series = ChartSeries(data: points)
+            let series = ChartSeries(data: points)
             
             
             
@@ -178,9 +177,9 @@ class BodyMeasurementsViewController : UIViewController, UIPickerViewDelegate, U
     
     func addSavedMeasurementsToChart(weight: Float)
     {
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         
-        var copyOfDefaults = NSMutableArray()
+        let copyOfDefaults = NSMutableArray()
         
         var pastPoints : [[Float]] = []
         
@@ -189,13 +188,13 @@ class BodyMeasurementsViewController : UIViewController, UIPickerViewDelegate, U
         
         if(defaults.objectForKey("PastHiit") != nil){
             
-            print(defaults.objectForKey("PastHiit") )
+            print(defaults.objectForKey("PastHiit"), terminator: "" )
             
             pastPoints = defaults.objectForKey("PastHiit")! as! [[Float]]
             
             
             
-            for var i = 0; i < count(pastPoints); ++i{
+            for var i = 0; i < pastPoints.count; ++i{
                 var thisSet : [Float] = pastPoints[i] as [Float]
                 copyOfDefaults.addObject(thisSet)
                 
@@ -204,34 +203,25 @@ class BodyMeasurementsViewController : UIViewController, UIPickerViewDelegate, U
                 
                 let point : Array<(x: Float, y: Float)> = [(x: Float(thisSet[0]), y: Float(thisSet[1]))]
                 
-                points.append(x:Float(thisSet[0]), y:Float(thisSet[1]))
+                points.append(point[0])
                 
                 
                 
             }
         }
+     
         
-        /*
-        if(points.count > 0) {
-            var series = ChartSeries(data: points)
-            
-            
-            
-            self.weightChart.addSeries(series)
-            
-        }*/
+        let counter =  pastPoints.count
         
-        var counter =  count(pastPoints)
-        
-        var array = NSMutableArray()
-        
-        
-        //var weight = Float(self.weightTextField!.text!.substringWithRange(Range<String.Index>(start:  self.weightTextField!.text!.startIndex, end: advance(self.weightTextField!.text!.endIndex, - offset))).toInt()!)
+
         if(weight != 0){
-            points.append(x: Float(counter), y: weight)
-            let point : Array<(x: Float, y: Float)> = [(x: Float(counter), y: weight)]
+           // points.append(x: Float(counter), y: Float(weight))
             
-            var series = ChartSeries(data: points)
+            
+            points.append((x: Float(counter), y: weight))
+            
+            
+            let series = ChartSeries(data: points)
             
             copyOfDefaults.addObject([counter,weight])
             
@@ -240,7 +230,7 @@ class BodyMeasurementsViewController : UIViewController, UIPickerViewDelegate, U
             
             self.weightChart.addSeries(series)
         } else if(points.count != 0) {
-            var series = ChartSeries(data: points)
+            let series = ChartSeries(data: points)
             
             
             
@@ -258,19 +248,19 @@ class BodyMeasurementsViewController : UIViewController, UIPickerViewDelegate, U
     
     @IBAction func newDatePicked(sender: UIDatePicker) {
         self.date = sender.date
-        var userDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.setValue(self.date, forKey: "HiitFitDate")
         userDefaults.synchronize()
     }
     
     
     @IBAction func weightTextChanged(sender: UITextField) {
-        if(count(self.weightTextField!.text!) > 0){
+        if((self.weightTextField!.text!).characters.count > 0){
             self.weightTextField!.text! += " \(self.unitOptions[self.unitsPickerView.selectedRowInComponent(0)])"
             
             self.weightTextField.setNeedsDisplay()
             
-            var userDefaults = NSUserDefaults.standardUserDefaults()
+            let userDefaults = NSUserDefaults.standardUserDefaults()
             userDefaults.setValue(self.weightTextField!.text!, forKey: "HiitFit")
             userDefaults.synchronize()
         }

@@ -12,7 +12,7 @@ import UIKit
 
 
 
-class HiitFitOutterTableView : UITableViewController, UITableViewDataSource, UITableViewDelegate {
+class HiitFitOutterTableView : UITableViewController {
     
     var workoutCats : [WorkoutCategory] = []
     
@@ -33,7 +33,7 @@ class HiitFitOutterTableView : UITableViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
         self.reloadInputViews()
         if self.workoutCats.count == 0 {
-            var loader = WorkoutPopulator()
+            let loader = WorkoutPopulator()
             self.workoutCats = loader.setup()
         }
        
@@ -54,7 +54,7 @@ class HiitFitOutterTableView : UITableViewController, UITableViewDataSource, UIT
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
+        let cell = UITableViewCell()
         cell.textLabel?.text =  self.workoutCats[indexPath.row].categoryName
         return cell
     }
@@ -94,7 +94,7 @@ class HiitFitOutterTableView : UITableViewController, UITableViewDataSource, UIT
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showSubCategories" {
-            var dest =  segue.destinationViewController as! HiitFitInnerTableView
+            let dest =  segue.destinationViewController as! HiitFitInnerTableView
             if sender?.textLabel??.text != nil {
                 dest.sectionName = self.formedDestination.sectionName
                 dest.workouts = self.formedDestination.workouts
